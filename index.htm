@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- for correct font size on mobile devices -->
+<meta name="description" content="Academic homepage of Yun Wang @ LTI, CMU">
+<meta name="keywords" content="Yun Wang, Maigo, Carnegie Mellon University, CMU, Language Technologies Institute, LTI">
+<title>Yun Wang (Maigo)</title>
+<style>
+body {
+  max-width: 800px;
+  min-width: 300px;
+  margin: auto;
+  padding: 46px 16px 16px 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+a {
+  color: blue;
+}
+
+a:hover {
+  color: red;
+}
+
+nav {
+  display: block;
+  max-width: 800px;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+nav ul {
+  background: linear-gradient(to bottom, #086ed5, #055db5);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+nav li {
+  float: left;
+}
+
+nav a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: white;
+  background: linear-gradient(to bottom, #109010, #007000);
+  cursor: pointer;
+}
+
+section {
+  clear: both;
+}
+
+h1 {
+  font-size: 200%;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 150%;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.card {
+  overflow: auto;
+  margin: 0 5px 20px 0;
+  padding: 0px 15px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 5px 5px 2px #E0E0E0;
+  border-radius: 15px;
+  line-height: 1.5;
+}
+
+img.contact-larger {
+  width: 14%;
+  height: auto;
+}
+
+img.contact-smaller {
+  width: 13%;
+  height: auto;
+}
+
+div.timeline img {
+  float: left;
+  width: 20%;
+  height: auto;
+  margin: 15px 20px 15px 5px;
+  border-radius: 15px;
+}
+
+div.timeline table {
+  margin-bottom: 10px;
+}
+
+div.timeline table td {
+  padding: 2px 0;
+  vertical-align: top;
+}
+
+div.timeline table td:nth-child(1) {
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+div.project img {
+  float: left;
+  width: 33%;
+  height: auto;
+  margin: 20px 20px 10px 0;
+  border-radius: 15px;
+}
+
+#publications table td {
+  padding: 4px 0;
+  vertical-align: top;
+}
+
+#publications table td:nth-child(1) {
+  text-align: right;
+  padding-right: 15px;
+  white-space: nowrap;
+}
+
+div.misc img {
+  float: left;
+  width: 15%;
+  height: auto;
+  margin: 12px 20px 12px 0;
+  border-radius: 15px;
+}
+</style>
+
+<script>
+// All of these functions adjust for the height of the fixed navigation bar at the top
+function navHeight() {
+  return document.getElementById("nav").offsetHeight;
+}
+
+function adjustTop() {
+  document.body.style.paddingTop = navHeight() + "px";
+}
+
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView();
+  let pos = document.getElementById(id).getBoundingClientRect().top;
+  let height = navHeight();
+  if (pos < height) {
+    window.scrollBy(0, pos - height);
+  }
+}
+
+function prepareLinks() {
+  let links = document.getElementsByTagName("a");
+  for (let i = 0; i < links.length; i++) {
+    let link = links[i];
+    let href = link.getAttribute("href");
+    if (href.charAt(0) == "#") {
+      link.onclick = function() {
+        history.pushState({}, "", window.location);
+        scrollTo(href.substr(1));
+        return false;   // Do not perform the original scroll action
+      }
+    }
+  }
+}
+</script>
+</head>
+
+<body onload="prepareLinks(); adjustTop()" onresize="adjustTop()">
+<nav id="nav"><ul>
+  <li><a href="#top">Top</a></li>
+  <li><a href="#work">Work</a></li>
+  <li><a href="#education">Education</a></li>
+  <li><a href="#projects">Projects</a></li>
+  <li><a href="#publications">Publications</a></li>
+  <li><a href="#misc">Misc</a></li>
+</ul></nav>
+
+<section id="top" style="padding-top: 20px">
+<div style="float: right; width: 23%; height: auto; margin-left: 30px">
+  <div><img src="img/maigo.png" alt="Yun Wang (Maigo)" style="width: 100%; height: auto"></div>
+  <div style="width: 100%; margin-top: 5px; font-size: 0; text-align-last: justify">
+    <a href="mailto:maigoakisame@gmail.com"><img src="img/icon/email.png" alt="Email" class="contact-larger"></a>
+    <a target="_blank" href="https://www.facebook.com/maigoakisame"><img src="img/icon/facebook-round.png" alt="Facebook" class="contact-larger"></a>
+    <a target="_blank" href="https://scholar.google.com/citations?user=RAag0LUAAAAJ&hl=en"><img src="img/icon/google-scholar.png" alt="Google Scholar" class="contact-smaller"></a>
+    <a target="_blank" href="https://www.linkedin.com/in/maigo"><img src="img/icon/linkedin.png" alt="LinkedIn" class="contact-larger"></a>
+    <a target="_blank" href="https://github.com/MaigoAkisame"><img src="img/icon/github.png" alt="GitHub" class="contact-larger"></a>
+    <a target="_blank" href="https://www.zhihu.com/people/maigo"><img src="img/icon/zhihu.png" alt="Zhihu" class="contact-larger"></a>
+  </div>
+</div>
+<p style="font-size: 300%; margin: 0 0 20px 0">
+<span title="In Chinese: 王赟">Yun Wang</span>
+(<span title='Maigo is my nickname. It means "lost child" in Japanese.'>Maigo</span>)
+</p>
+<div class="card">
+  <p>I recently graduated as a PhD from the Language Technologies Institute (LTI) of Carnegie Mellon University (CMU).
+     I worked with Prof. <a target="_blank" href="http://www.cs.cmu.edu/~fmetze/">Florian Metze</a> on sound event detection.</p>
+  <p>At the end of this November, I will join the Applied Machine Learning group of Facebook as a research scientist.</p>
+  <p>My research interests also include speech recognition and machine learning.</p>
+</div>
+</section>
+
+<section id="work">
+<h1>Work Experience</h1>
+<div class="card timeline">
+  <img src="img/icon/facebook.png" alt="Facebook">
+  <h2>Facebook, Inc.</h2>
+  <table>
+    <tr><td>11/2018 ~</td><td>Research scientist in the Applied Machine Learning group</tr>
+    <tr><td>01/2015 ~ 04/2015</td><td>Software engineer intern in the Language Technology group</tr>
+  </table>
+</div>
+</section>
+
+<section id="education">
+<h1>Education</h1>
+<div class="card timeline">
+  <img src="img/icon/cmu.png" alt="Carnegie Mellon University">
+  <h2>Carnegie Mellon University</h2>
+  <table>
+    <tr><td>08/2012 ~ 10/2018</td><td>PhD student at Language Technologies Institute (LTI)</tr>
+    <tr><td>08/2010 ~ 08/2012</td><td>Master student at Language Technologies Institute (LTI)</tr>
+  </table>
+</div>
+<div class="card timeline">
+  <img src="img/icon/tsinghua.png" alt="Tsinghua University">
+  <h2>Tsinghua University</h2>
+  <table>
+    <tr><td>08/2006 ~ 07/2010</td><td>Undergraduate student in the Dept. of Electronic Engineering</tr>
+  </table>
+</div>
+</section>
+
+<section id="projects">
+<h1>Research Projects</h1>
+<div class="card project">
+  <img src="img/proj/event-detection.jpg" alt="Sound Event Detection with Weak Labeling">
+  <h2>Sound Event Detection with Weak Labeling (05/2015 - 10/2018)</h2>
+  <p>Sound event detection (SED) is the task of classifying and localizing
+  semantically meaningful units of sounds, such as car engine noise and
+  dog barks, in audio streams.
+  Because it is expensive to obtain strong labeling that specifies the
+  onset and offset times of each event occurrence, I focused on how to train
+  SED systems with weak labeling in which the temporal information is incomplete.
+  I dealt with two types of weak labeling: (1) for presence/absence labeling
+  which provides no temporal information at all, I built SED systems using the
+  multiple instance learning (MIL) framework and compared many types of pooling functions;
+  (2) for sequential labeling which specifies the order of event boundaries,
+  I adapted the connectionist temporal classification (CTC) framework for
+  speech recognition and used it for SED.</p>
+  <p>In the first year of this project, I also worked on multimedia event detection,
+  which aims to understand what is the high-level event happening in a video
+  or audio recording, such as a soccer game or a birthday party.</p>
+  <p>Main publications:
+  [<a href="#icassp16">ICASSP16</a>],
+  [<a href="#icassp17">ICASSP17</a>],
+  [<a href="#interspeech17">Interspeech17</a>],
+  [<a href="#interspeech18a">Interspeech18a</a>],
+  [<a href="#1810.09050">1810.09050</a>],
+  [<a href="#1810.09052">1810.09052</a>].</p>
+  <p>Other publications:
+  [<a href="#icmr16">ICMR16</a>],
+  [<a href="#icassp18">ICASSP18</a>],
+  [<a href="#interspeech18b">Interspeech18b</a>],
+  [<a href="#eswa19">ESWA19</a>].</p>
+  <p>PhD thesis proposal:
+  [<a href="#cmu-proposal">CMU-proposal</a>].</p>
+  <p>PhD thesis:
+  [<a href="#cmu-thesis">CMU-thesis</a>].</p>
+</div>
+<div class="card project">
+  <img src="img/proj/babel.jpg" alt="Keyword Search in Low-Resource Languages">
+  <h2>Keyword Search in Low-Resource Languages (03/2012 - 12/2014)</h2>
+  <p>I participated in the IARPA
+  <a target="_blank" href="https://www.iarpa.gov/index.php/research-programs/babel">Babel</a>
+  project, whose goal was to build speech recognizers and keyword detection
+  systems for low-resource languages such as Pashto and Tagalog.
+  I rewrote the code to generate confusion networks (which can be regarded as
+  indices for keyword detection) from lattices (which are the output of speech
+  recognizers), making it shorter, faster and better than before.
+  I also maintained the keyword detection toolkit, and built web-based error
+  analysis tools for the Radical team, of which CMU was a part.</p>
+  <p>Publications:
+  [<a href="#interspeech14a">Interspeech14a</a>],
+  [<a href="#interspeech14b">Interspeech14b</a>],
+  [<a href="#slt14">SLT14</a>],
+  [<a href="#icassp15">ICASSP15</a>].</p>
+</div>
+<div class="card project">
+  <img src="img/proj/speaker-id.png" alt="Robust Open-Set Speaker Identification">
+  <h2>Robust Open-Set Speaker Identification (10/2010 - 02/2012)</h2>
+  <p>I built an open-set speaker identification system. To deal with noise and
+  channel mismatches, I explored an extensive variety of acoustic features.
+  I also compared several speaker modeling techniques, including GMM-UBM
+  (Gaussian mixture models - universal background model), GMM-SVM (support
+  vector machines using GMM supervectors), and JFA (joint factor analysis,
+  a precursor to the i-vector technique which soon became the mainstream).</p>
+  <p>Technical report: [<a href="#irosis">IROSIS</a>].</p>
+</div>
+<div class="card project">
+  <img src="img/proj/vmsep.png" alt="Separating Singing Voice and Accompaniment from Monaural Audio">
+  <h2>Separating Singing Voice and Accompaniment from Monaural Audio (02/2010 - 06/2010)</h2>
+  <p>I built a system to separate the singing voice and the accompaniment from
+  real-world music files. It first extracts the melody using a hidden Markov
+  model (HMM) and features based on harmonic summation, then separates the
+  singing voice and accompaniment using non-negative matrix factorization (NMF).
+  Evaluation on two public databases shows that the system reaches
+  state-of-the-art performance. The separated accompaniment has a quality high
+  enough to be used in singing performances.</p>
+  <p>This project is open-source on
+  <a target="_blank" href="https://github.com/MaigoAkisame/VMSep-2010">GitHub</a>,
+  and a demo of some separation results can be found
+  <a target="_blank" href="http://oa.ee.tsinghua.edu.cn/~ouzhijian/MaigoDemo/index.htm">here</a>.</p>
+  <p>Publications:
+  [<a href="#thu-thesis">THU-thesis</a>],
+  [<a href="#icassp11a">ICASSP11a</a>].
+  </p>
+</div>
+<div class="card project">
+  <img src="img/proj/humming.png" alt="Bit Vector Indexing for Query by Humming">
+  <h2>Bit Vector Indexing for Query by Humming (09/2007 - 06/2008)</h2>
+  <p>Query by humming (QBH) is a form of music retrieval, where users can search
+  for music by humming a piece of melody. It is supported by websites such as
+  <a target="_blank" href="http://soundhound.com">SoundHound</a>.
+  In QBH systems, music clips are represented by their "fingerprints", which
+  are points in a high-dimensional space, and bit vector indices (BVI) can
+  be used to speed up the search in this space. I built a bit vector indexing
+  system which ran 60 times faster than a naïve one-by-one comparison.</p>
+</div>
+<div class="card project">
+  <img src="img/proj/vocal-synth.jpg" alt="Japanese Vocal Music Synthesis">
+  <h2>Japanese Vocal Music Synthesis (01/2007 - 02/2007)</h2>
+  <p>I built a simple system to synthesize vocal music in Japanese, by adjusting
+  the pitch and duration of pre-recorded syllables according to the music score.
+  I did this before even learning about the Fourier transform. You can listen
+  to some synthesized songs below:</p>
+  <ul>
+    <li><a target="_blank" href="demo/vocal-synth/sakurairo-no-kisetsu.mp3" lang="jp">桜色の季節</a> (<cite>The Cherry-Colored Season</cite>), an original song by me;</li>
+    <li><a target="_blank" href="demo/vocal-synth/haru-no-yobigoe.mp3" lang="jp">春の呼び声</a> (<cite>The Call of Spring</cite>), an original song by me;</li>
+    <li><a target="_blank" href="demo/vocal-synth/mune-ga-dokidoki.mp3" lang="jp">胸がドキドキ</a> (<cite>A Pounding Heart</cite>), the first opening song of <cite>Detective Conan</cite>.</li>
+  </ul>
+  <p>This project is open-source on
+  <a target="_blank" href="https://github.com/MaigoAkisame/VocalSynth-2007">GitHub</a>.
+</div>
+</section>
+
+<section id="publications">
+<h1>Publications</h1>
+<table class="card" style="padding-top: 10px; padding-bottom: 10px">
+  <tr id="eswa19">
+    <td>[ESWA19]</td>
+    <td>
+      Pierre Laffitte, <b>Yun Wang</b>, David Sodoyer, Laurent Girin,
+      "<a target="_blank" href="papers/eswa19.pdf">Assessing the performances of different neural network architectures for the detection of screams and shouts in public transportation</a>",
+      in <cite>Expert Systems With Applications</cite>, vol. 117, pp. 29-41, Mar. 2019.
+    </td>
+  </tr>
+  <tr id="1810.09050">
+    <td>[1810.09050]</td>
+    <td>
+      <b>Yun Wang</b>, Juncheng Li and Florian Metze,
+      "<a target="_blank" href="https://arxiv.org/pdf/1810.09050.pdf">A comparison of five multiple instance learning pooling functions for sound event detection with weak labeling</a>",
+      submitted to ICASSP 2019.
+    </td>
+  </tr>
+  <tr id="1810.09052">
+    <td>[1810.09052]</td>
+    <td>
+      <b>Yun Wang</b> and Florian Metze,
+      "<a target="_blank" href="https://arxiv.org/pdf/1810.09052.pdf">Connectionist temporal localization for sound event detection with sequential labeling</a>",
+      submitted to ICASSP 2019.
+    </td>
+  </tr>
+  <tr id="cmu-thesis">
+    <td>[CMU-thesis]</td>
+    <td>
+      <b>Yun Wang</b>,
+      "<a target="_blank" href="papers/cmu-thesis.pdf">Polyphonic sound event detection with weak labeling</a>",
+      PhD thesis, Carnegie Mellon University, Oct. 2018.
+    </td>
+  </tr>
+  <tr id="interspeech18a">
+    <td>[Interspeech18a]</td>
+    <td>
+      <b>Yun Wang</b>, Juncheng Li, and Florian Metze,
+      "<a target="_blank" href="papers/interspeech18a.pdf">Comparing the max and noisy-or pooling functions in multiple instance learning for weakly supervised sequence learning tasks</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 1339-1343, Sep. 2018.
+      (also available on <a target="_blank" href="https://arxiv.org/pdf/1804.01146.pdf">arXiv</a>)
+    </td>
+  </tr>
+  <tr id="interspeech18b">
+    <td>[Interspeech18b]</td>
+    <td>
+      Shao-Yen Tseng, Juncheng Li, <b>Yun Wang</b>, Florian Metze, Joseph Szurley and Samarjit Das,
+      "<a target="_blank" href="papers/interspeech18b.pdf">Multiple instance deep learning for weakly supervised small-footprint audio event detection</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 3279-3283, Sep. 2018.
+    </td>
+  </tr>
+  <tr id="interspeech18c">
+    <td>[Interspeech18c]</td>
+    <td>
+      Adrien Le Franc, Eric Riebling, Julien Karadayi, <b>Yun Wang</b>, Camila Scaff, Florian Metze, and Alejandrina Cristia,
+      "<a target="_blank" href="papers/interspeech18c.pdf">The ACLEW DiViMe: An easy-to-use diarization tool</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 1383-1387, Sep. 2018.
+    </td>
+  </tr>
+  <tr id="icassp18">
+    <td>[ICASSP18]</td>
+    <td>
+      Juncheng Li, <b>Yun Wang</b>, Joseph Szurley, Florian Metze, Samarjit Das,
+      "<a target="_blank" href="papers/icassp18.pdf">A light-weight multimodal framework for improved environmental audio tagging</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 6832-6836, Apr. 2018.
+    </td>
+  </tr>
+  <tr id="cmu-proposal">
+    <td>[CMU-proposal]</td>
+    <td>
+      <b>Yun Wang</b>,
+      "<a target="_blank" href="papers/cmu-thesis-proposal.pdf">Polyphonic sound event detection with weak labeling</a>",
+      PhD thesis proposal, Carnegie Mellon University, Oct. 2017.
+    </td>
+  </tr>
+  <tr id="interspeech17">
+    <td>[Interspeech17]</td>
+    <td>
+      <b>Yun Wang</b> and Florian Metze,
+      "<a target="_blank" href="papers/interspeech17.pdf">A transfer learning based feature extractor for polyphonic sound event detection using connectionist temporal classification</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 3097-3101, Aug. 2017.
+    </td>
+  </tr>
+  <tr id="icassp17">
+    <td>[ICASSP17]</td>
+    <td>
+      <b>Yun Wang</b> and Florian Metze,
+      "<a target="_blank" href="papers/icassp17.pdf">A first attempt at polyphonic sound event detection using connectionist temporal classification</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 2986-2990, Mar. 2017.
+    </td>
+  </tr>
+  <tr id="icmr16">
+    <td>[ICMR16]</td>
+    <td>
+      <b>Yun Wang</b> and Florian Metze,
+      "<a target="_blank" href="papers/icmr16.pdf">Recurrent support vector machines for audio-based multimedia event detection</a>",
+      in <cite>Proceedings of the ACM International Conference on Multimedia Retrieval (ICMR)</cite>, pp. 265-269, Jun. 2016.
+    </td>
+  </tr>
+  <tr id="icassp16">
+    <td>[ICASSP16]</td>
+    <td>
+      <b>Yun Wang</b>, Leonardo Neves, and Florian Metze,
+      "<a target="_blank" href="papers/icassp16.pdf">Audio-based multimedia event detection using deep recurrent neural networks</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 2742-2746, Mar. 2016.
+    </td>
+  </tr>
+  <tr id="ismir15">
+    <td>[ISMIR15]</td>
+    <td>
+      Guangyu Xia, <b>Yun Wang</b>, Roger Dannenberg, and Geoffrey Gordon,
+      "<a target="_blank" href="papers/ismir15.pdf">Spectral learning for expressive interactive ensemble music performance</a>",
+      in <cite>Proceedings of the International Society for Music Information Retrieval Conference (ISMIR)</cite>, pp. 816-822, Oct. 2015.
+    </td>
+  </tr>
+  <tr id="icassp15">
+    <td>[ICASSP15]</td>
+    <td>
+      Florian Metze, Ankur Gandhe, Yajie Miao, Zaid Sheikh, <b>Yun Wang</b>, Di Xu, Hao Zhang, Jungsuk Kim, Ian Lane, Won Kyum Lee, Sebastian Stüker, and Markus Müller,
+      "<a target="_blank" href="papers/icassp15.pdf">Semi-supervised training in low-resource ASR and KWS</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 4699-4703, Apr. 2015.
+    </td>
+  </tr>
+  <tr id="slt14">
+    <td>[SLT14]</td>
+    <td>
+      Di Xu, <b>Yun Wang</b>, and Florian Metze,
+      "<a target="_blank" href="papers/slt14.pdf">EM-based phoneme confusion matrix generation for low-resource spoken term detection</a>",
+      in <cite>Proceedings of the IEEE Spoken Language Technology Workshop (SLT)</cite>, pp. 424-429, Dec. 2014.
+    </td>
+  </tr>
+  <tr id="interspeech14a">
+    <td>[Interspeech14a]</td>
+    <td>
+      <b>Yun Wang</b> and Florian Metze,
+      "<a target="_blank" href="papers/interspeech14a.pdf">An in-depth comparison of keyword specific thresholding and sum-to-one score normalization</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 2474-2478, Sep. 2014.
+    </td>
+  </tr>
+  <tr id="interspeech14b">
+    <td>[Interspeech14b]</td>
+    <td>
+      Justin Chiu, <b>Yun Wang</b>, Jan Trmal, Daniel Povey, Guoguo Chen, and Alexander Rudnicky,
+      "<a target="_blank" href="papers/interspeech14b.pdf">Combination of FST and CN search in spoken term detection</a>",
+      in <cite>Proceedings of the Annual Conference of the International Speech Communication Association (Interspeech)</cite>, pp. 2784-2788, Sep. 2014.
+    </td>
+  </tr>
+  <tr id="irosis">
+    <td>[IROSIS]</td>
+    <td>
+      Qin Jin and <b>Yun Wang</b>,
+      "<a target="_blank" href="papers/irosis.pdf">Integrated robust open-set speaker identification system (IROSIS)</a>",
+      CMU technical report, May 2012.
+    </td>
+  </tr>
+  <tr id="icassp11a">
+    <td>[ICASSP11a]</td>
+    <td>
+      <b>Yun Wang</b> and Zhijian Ou,
+      "<a target="_blank" href="papers/icassp11a.pdf">Combining HMM-based melody extraction and NMF-based soft masking for separating voice and accompaniment from monaural audio</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 1-4, May 2011.
+    </td>
+  </tr>
+  <tr id="icassp11b">
+    <td>[ICASSP11b]</td>
+    <td>
+      Angeliki Metallinou, Athanassios Katsamanis, <b>Yun Wang</b>, and Shrikanth Narayanan,
+      "<a target="_blank" href="papers/icassp11b.pdf">Tracking changes in continuous emotion states using body language and prosodic cues</a>",
+      in <cite>Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</cite>, pp. 2288-2291, May 2011.
+    </td>
+  </tr>
+  <tr id="thu-thesis">
+    <td>[THU-thesis]</td>
+    <td>
+      <b>Yun Wang</b>,
+      "<a target="_blank" href="papers/thu-thesis.pdf">Separating singing voice and accompaniment from monaural audio</a>",
+      bachelor's thesis, Tsinghua University, Jun. 2010. (in Chinese)
+    </td>
+  </tr>
+</table>
+</section>
+
+<section id="misc">
+<h1>Miscellaneous</h1>
+<div class="card misc">
+  <img src="img/icon/languages.png">
+  <p>
+    I know seven languages:
+    <span lang="zh-cn" title="Chinese (Mandarin)">汉语</span>,
+    <span lang="en" title="English">English</span>,
+    <span lang="ja" title="Japanese">日本語</span>,
+    <span lang="ko" title="Korean">한국어</span>,
+    <span lang="es" title="Spanish">español</span>,
+    <span lang="fr" title="French">français</span>, and
+    <span lang="vi" title="Vietnamese">tiếng Việt</span>.
+    And I can sing in <span lang="zh-yue" title="Cantonese">粵語</span>.
+  </p>
+  <p>I am proficient in the following programming languages: C, Java, Python and Matlab.</p>
+</div>
+<div class="card misc">
+  <img src="img/icon/mcpdict.png">
+  <p>
+    I am the author of the Android app <a target="_blank" href="https://play.google.com/store/apps/details?id=maigosoft.mcpdict">MCPDict</a> (<span lang="zh-tw">漢字古今中外讀音查詢</span>).
+    With this app, you can look up the pronunciation of Chinese characters in Middle Chinese, various modern Chinese dialects, and other languages in East Asia.
+    This app is open-source on <a target="_blank" href="https://github.com/MaigoAkisame/MCPDict">GitHub</a>; an iOS version and a <a target="_blank" href="http://www.phonicavi.com/dictionary/MCPDict/">web version</a> are being developed by collaborators.
+  </p>
+</div>
+<div class="card misc">
+  <img src="img/icon/zhihu.png">
+  <p>
+    I am an active user of <a target="_blank" href="https://www.zhihu.com/people/maigo">Zhihu</a> (<span lang="zh-cn">知乎</span>, a Chinese Q&amp;A website like Quora).
+    I answer questions and write <a target="_blank" href="https://zhuanlan.zhihu.com/maigo">articles</a> on languages and linguistics, math, and machine learning.
+  </p>
+</div>
+</section>
+
+</body>

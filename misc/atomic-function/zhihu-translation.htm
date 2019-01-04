@@ -1,0 +1,141 @@
+<style>
+  body {font-family: Arial}
+  img {vertical-align: middle}
+</style>
+
+<p>This is a translation of the following Zhihu post on atomic functions:</p>
+<p><a target="_blank" href="https://www.zhihu.com/question/34082396">https://www.zhihu.com/question/34082396</a></p>
+<p>If the images on the current page don't load, visit the link above, and refresh the current page.</p>
+
+<table cellpadding="10" width="100%">
+  <tr><td bgcolor="FFA0D0">
+    <h3>How to find the expression of the function in the figure, which satisfies <i>f</i>'(<i>x</i>) = <i>f</i>(2<i>x</i>)?</h3>
+    <table cellspacing="10">
+      <tr>
+        <td><img src="https://pic1.zhimg.com/50/55f6fb296cc58369c96f70c8d31e5a88_hd.jpg"></td>
+        <td align="left" valign="bottom">
+          <p><b>Text in the image:</b></p>
+          <p>Left: the first derivative of <i>f</i>(<i>x</i>);</p>
+          <p>Right: It's also OK to satisfy <i>f</i><sup>(<i>n</i>)</sup>(<i>x</i>) = <i>a</i><sup><i>n</i></sup> <i>f</i>(2<sup><i>n</i></sup><i>x</i>)</p>
+        </td>
+      </tr>
+    </table>
+    <p>The shape looks like a series of Gaussians pointing up and down, and it satisfies <i>f</i>'(x) = <i>f</i>(2x). How would you find the expression of this function? I'm not familiar with math, so please point out if anything is unclear. If there's a better place to ask this question (website, group, or expert) please let me know, too. Thanks!</p>
+    <p>(Above is the original question; you're welcome to amend the question below the line)</p>
+    <hr>
+    <p>More description: the function is larger than 0 on the interval (0,1), and <i>f</i>(0) = <i>f</i>(1) = 0. Also, <i>f</i>(<i>x</i> + 2<sup><i>k</i></sup>) = -<i>f</i>(<i>x</i>), for any <i>x</i> &isin; [0, 2<sup><i>k</i></sup>], where <i>k</i> is a non-negative integer.</p>
+  </td></tr>
+  <tr><td bgcolor="A0D0FF">
+    <h3>Answer by <img src="https://pic2.zhimg.com/19ed62ad9_xs.jpg"> Maigo Yun Wang:</h3>
+    <p>
+      This is an interesting question.<br>
+      I've tried approaching it from several angles, but haven't reached a full solution.<br>
+      I'll just write down all I've thought of.<br>
+    </p>
+    <p><b>======== 0. Some naive thoughts ========</b></p>
+    <p>
+      Suppose <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">,<br>
+      Then we have <img src="https://www.zhihu.com/equation?tex=f%27%27%28x%29+%3D+2f%284x%29">, <img src="https://www.zhihu.com/equation?tex=f%5E%7B%283%29%7D%28x%29+%3D+8f%288x%29">, <img src="https://www.zhihu.com/equation?tex=f%5E%7B%284%29%7D%28x%29+%3D+64f%2816x%29"> ...<br>
+      The general form is <img src="https://www.zhihu.com/equation?tex=f%5E%7B%28n%29%7D%28x%29+%3D+2%5E%5Cfrac%7Bn%28n-1%29%7D%7B2%7Df%282%5Enx%29">, where the coefficient isn't <img src="https://www.zhihu.com/equation?tex=a%5En">, as the OP has guessed.<br>
+    </p>
+    <p>
+      From here on I'll only consider constructing a function that satisfies <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">.<br>
+      If possible, we hope that <img src="https://www.zhihu.com/equation?tex=f%28n%29+%3D+0%2C+%5Cforall+n+%5Cin+%5Cmathbb%7BZ%7D">, and that <img src="https://www.zhihu.com/equation?tex=f%28x%29+%3E+0%2C+%5Cforall+x+%5Cin+%280%2C1%29">.<br>
+    </p>
+    <p><b>======== 1. Characteristics of the time-domain signal ========</b></p>
+    <p>
+      Notice <img src="https://www.zhihu.com/equation?tex=f%280%29+%3D+f%27%280%29+%3D+f%27%27%280%29+%3D+%5Cldots+%3D+0">.<br>
+    </p>
+    <p>
+      That's a weird requirement -- the function is infinitely differentiable at the origin, but all the derivatives are zero!<br>
+      Doesn't this mean <img src="https://www.zhihu.com/equation?tex=f%28x%29+%5Cequiv+0">?<br>
+    </p>
+    <p>
+      Actually no. The following function satisfies the constraint, but isn't zero everywhere:<br>
+      <img src="https://www.zhihu.com/equation?tex=f%28x%29+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Bll%7D+%5Ctext%7Be%7D%5E%7B-1%2Fx%5E2%7D+%26+x+%5Cne+0+%5C%5C+0+%26+x+%3D+0+%5Cend%7Barray%7D+%5Cright."><br>
+      (This is a representative example of <a target="_blank" href="https://en.wikipedia.org/wiki/Flat_function">flat functions</a>)<br>
+    </p>
+    <p>
+      If the OP's function exists, it is very likely to have a form of <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Be%7D%5E%7B-1%2Fx%5E2%7D"> near integer points.<br>
+      But I haven't been able to make a figure like the OP's out of this despite having tried a long time.<br>
+    </p>
+    <p><b>======== 2. The perspective of the Fourier series (sort of) ========</b></p>
+    <p>
+      The OP's figure looks periodic (although it's actually not), which inspired me to think from the perspective of Fourier series.<br>
+    </p>
+    <p>
+      Suppose the function can be decomposed as:<br>
+      <img src="https://www.zhihu.com/equation?tex=f%28x%29+%3D+%5Csum_%7Bn%3D-%5Cinfty%7D%5E%7B%2B%5Cinfty%7D+a_n+%5Ccdot+%5Ctext%7Be%7D%5E%7Bi%5Ccdot+2%5Cpi+%5Ccdot+2%5Enf_0+x%7D"><br>
+      This is different from an ordinary Fourier series.<br>
+      An ordinary Fourier series consists of components whose frequencies are <img src="https://www.zhihu.com/equation?tex=f_0%2C+2f_0%2C+3f_0%2C+%5Cldots">,<br>
+      But the series here has components with frequencies <img src="https://www.zhihu.com/equation?tex=%5Cldots%2C+f_0%2F4%2C+f_0%2F2%2C+f_0%2C+2f_0%2C+4f_0%2C+%5Cldots">.<br>
+    </p>
+      Expand both sides of <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29"> into a series:<br>
+      <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+%5Csum_%7Bn%3D-%5Cinfty%7D%5E%7B%2B%5Cinfty%7D+%28i+%5Ccdot+2%5Cpi+%5Ccdot+2%5Enf_0+%29%5Ccdot+a_n+%5Ccdot+%5Ctext%7Be%7D%5E%7Bi+%5Ccdot+2%5Cpi+%5Ccdot+2%5Enf_0x%7D"><br>
+      <img src="https://www.zhihu.com/equation?tex=f%282x%29+%3D+%5Csum_%7Bn%3D-%5Cinfty%7D%5E%7B%2B%5Cinfty%7D+a_n+%5Ccdot+%5Ctext%7Be%7D%5E%7Bi%5Ccdot+2%5Cpi+%5Ccdot+2%5E%7Bn%2B1%7D+f_0+x%7D+%3D+%5Csum_%7Bn%3D-%5Cinfty%7D%5E%7B%2B%5Cinfty%7D+a_%7Bn-1%7D+%5Ccdot+%5Ctext%7Be%7D%5E%7Bi%5Ccdot+2%5Cpi+%5Ccdot+2%5En+f_0+x%7D"><br>
+    </p>
+    <p>
+      Compare the two formulas to find <img src="https://www.zhihu.com/equation?tex=a_%7Bn-1%7D+%3D+%28i2%5Cpi+f_0%29+%5Ccdot+2%5En+%5Ccdot+a_n"><br>
+      This is a recurrence relation, whose solution is: <img src="https://www.zhihu.com/equation?tex=a_n+%3D+C+%5Ccdot+%28i2%5Cpi+f_0%29%5E%7B-n%7D+%5Ccdot+2%5E%7B-%5Cfrac%7Bn%28n%2B1%29%7D%7B2%7D%7D"><br>
+    </p>
+    <p>
+      We can pick arbitrary values of <img src="https://www.zhihu.com/equation?tex=C"> and <img src="https://www.zhihu.com/equation?tex=f_0"> to get a function that satisfies <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">.<br>
+      (Actually <img src="https://www.zhihu.com/equation?tex=f_0"> can be restricted to the interval <img src="https://www.zhihu.com/equation?tex=%5B1%2C2%29">, because doubling or halfing it doesn't make any difference)<br>
+      The <img src="https://www.zhihu.com/equation?tex=f%28x%29"> obtained this way may not be real, but it doesn't matter, because both its real and imaginary parts satisfy <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">.<br>
+    </p>
+    <p>
+      For example, let <img src="https://www.zhihu.com/equation?tex=C+%3D+1%2C+f_0+%3D+1">, then the real and imaginary parts of <img src="https://www.zhihu.com/equation?tex=f%28x%29"> are shown in blue in the following figures.<br>
+      I've also plotted the real and imaginary parts of <img src="https://www.zhihu.com/equation?tex=f%27%28x%29"> in read; it can be seen that indeed <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">.<br>
+    </p>
+    <p>
+      <img src="https://pic1.zhimg.com/80/93808ae645e00d9e40dd42b157ccf663_hd.jpg" data-rawwidth="617" data-rawheight="232" class="origin_image zh-lightbox-thumb lazy" width="617" data-original="https://pic1.zhimg.com/93808ae645e00d9e40dd42b157ccf663_r.jpg" data-actualsrc="https://pic1.zhimg.com/50/93808ae645e00d9e40dd42b157ccf663_hd.jpg"><br>
+      <img src="https://pic1.zhimg.com/80/c0e9eed2d08cf5cc4c4c946c448eaa0c_hd.jpg" data-rawwidth="617" data-rawheight="232" class="origin_image zh-lightbox-thumb lazy" width="617" data-original="https://pic1.zhimg.com/c0e9eed2d08cf5cc4c4c946c448eaa0c_r.jpg" data-actualsrc="https://pic1.zhimg.com/50/c0e9eed2d08cf5cc4c4c946c448eaa0c_hd.jpg"><br>
+    </p>
+    <p>
+      An appropriate linear combination of the real and imaginary parts gives a function <img src="https://www.zhihu.com/equation?tex=g%28x%29">, which satisfies <img src="https://www.zhihu.com/equation?tex=g%27%28x%29%3Dg%282x%29"> and <img src="https://www.zhihu.com/equation?tex=g%280%29%3D0">:<br>
+    </p>
+    <p>
+      <img src="https://pic3.zhimg.com/80/1944fb3400c268d78f03095cee2c5c86_hd.jpg" data-rawwidth="617" data-rawheight="232" class="origin_image zh-lightbox-thumb lazy" width="617" data-original="https://pic3.zhimg.com/1944fb3400c268d78f03095cee2c5c86_r.jpg" data-actualsrc="https://pic3.zhimg.com/50/1944fb3400c268d78f03095cee2c5c86_hd.jpg"><br>
+    </p>
+    <p>
+      It can be seen that <img src="https://www.zhihu.com/equation?tex=g%28x%29"> is indeed very "flat" near the origin.<br>
+    </p>
+    <p>
+      Because <img src="https://www.zhihu.com/equation?tex=f_0"> can assume any real value in the interval <img src="https://www.zhihu.com/equation?tex=%5B1%2C2%29">, and the resulting functions can be put into arbitrary linear combinations, the functions <img src="https://www.zhihu.com/equation?tex=f%28x%29"> that satisfy <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29"> make up a space of infinite dimensions -- uncountably infinite, to be precise.<br>
+    </p>
+    <p>
+      The requirement <img src="https://www.zhihu.com/equation?tex=f%28n%29+%3D+0%2C+%5Cforall+n+%5Cin+%5Cmathbb%7BZ%7D"> imposes only a countably infinite number of constraints, so I think that even with these constraints, the functions <img src="https://www.zhihu.com/equation?tex=f%28x%29"> still make up a space of uncountably infinite dimensions.<br>
+      But I don't know how to find the <img src="https://www.zhihu.com/equation?tex=f_0">'s and coefficients of the linear combination.<br>
+    </p>
+    <p>
+      Also, I'm not sure if it is easy to satisfy <img src="https://www.zhihu.com/equation?tex=f%28x%29+%3E+0%2C+%5Cforall+x+%5Cin+%280%2C1%29">.<br>
+    </p>
+    <p><b>======== 3. The perspective of the Fourier transform ========</b></p>
+    <p>
+      If we directly consider the Fourier transform <img src="https://www.zhihu.com/equation?tex=F%28%5Cvarphi%29"> of <img src="https://www.zhihu.com/equation?tex=f%28x%29">, (I denote the frequency by <img src="https://www.zhihu.com/equation?tex=%5Cvarphi"> to avoid confusion with <img src="https://www.zhihu.com/equation?tex=f">)<br>
+      Then by <img src="https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+f%282x%29">, we have <img src="https://www.zhihu.com/equation?tex=i2%5Cpi%5Cvarphi+F%28%5Cvarphi%29+%3D+%5Cfrac%7B1%7D%7B2%7DF%28%5Cfrac%7B%5Cvarphi%7D%7B2%7D%29">.<br>
+    </p>
+    <p>
+      Again this is a recurrence relation, whose solution is:<br>
+      <img src="https://www.zhihu.com/equation?tex=F%28%5Cvarphi%29+%3D+F%282%5En%5Cvarphi_0%29+%3D+C%28%5Cvarphi_0%29+%5Ccdot+%28i+2%5Cpi+%5Cvarphi_0%29%5E%7B-n%7D+%5Ccdot+2%5E%7B-%5Cfrac%7Bn%28n%2B3%29%7D%7B2%7D%7D"><br>
+      where <img src="https://www.zhihu.com/equation?tex=n+%5Cin+%5Cmathbb%7BZ%7D%2C+%5Cvarphi_0+%5Cin+%5B1%2C2%29">, and <img src="https://www.zhihu.com/equation?tex=C%28%5Cvarphi_0%29"> is any function on the interval <img src="https://www.zhihu.com/equation?tex=%5B1%2C2%29">.<br>
+    </p>
+    <p>
+      Actually this is just squashing all the "linear combination coefficients" in Part 2 into a single function <img src="https://www.zhihu.com/equation?tex=C%28%5Cvarphi_0%29">.<br>
+      But I don't know how to solve for <img src="https://www.zhihu.com/equation?tex=C%28%5Cvarphi_0%29">, either.<br>
+    </p>
+    <p><b>======== 4. Random notes ========</b></p>
+    <p>
+      The OP's function is quite meaningful.<br>
+      The sign of the function on the interval <img src="https://www.zhihu.com/equation?tex=%28n%2C+n%2B1%29"> stands for the parity of the number of 1's in the binary representation of <img src="https://www.zhihu.com/equation?tex=n">: 1 for even, and -1 for odd (only considering cases where <img src="https://www.zhihu.com/equation?tex=n%5Cge+0">).<br>
+    </p>
+  </td></tr>
+  <tr><td bgcolor="80FFC0">
+    <h3>Answer by <img src="https://pic2.zhimg.com/2ef1a79ec_xs.jpg"> Yin Zhong:</h3>
+    <p>I found this after discussing with @Maigo (see Figure 4b):</p>
+    <p>Hilberg, W.; Kravchenko, V.F.; Kravchenko, O.V.; Konovalov, Y.Y., "Atomic functions and generalized Thue-Morse sequence in digital signal and image processing," <i>Physics and Engineering of Microwaves, Millimeter and Submillimeter Waves (MSMW), 2013 International Kharkov Symposium on</i>, vol., no., pp.66,71, 23-28 June 2013<br>doi: 10.1109/MSMW.2013.6621989<br>URL: <a href="http://ieeexplore.ieee.org/document/6621989/">IEEE Xplore Abstract</a></p>
+    <p>I must admire the OP's mathematical intuition. Your sketch matches well with the solution (which doesn't have an elementary form) ...</p>
+    <p><img src="https://www.zhihu.com/equation?tex=F%28%5Comega%29+%3D+%5Cprod_%7Bk%3D1%7D%5E%7B%5Cinfty%7D+%5Cmathrm%7Bsinc%7D%5Cleft%28%5Cfrac%7B%5Comega%7D%7B2%5Ek%7D%5Cright%29"></p>
+    <p><img src="https://pic1.zhimg.com/80/0fc62197a3b775ea2be90392a0c70712_hd.jpg"></p>
+  </td></tr>
+</table>

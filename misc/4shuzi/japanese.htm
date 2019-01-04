@@ -1,0 +1,155 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.85">
+
+<script>
+var hiraganas = ['あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ', 'さ', 'し', 'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と', 'な', 'に', 'ぬ', 'ね', 'の', 'は', 'ひ', 'ふ', 'へ', 'ほ', 'ま', 'み', 'む', 'め', 'も', 'や', 'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'わ', 'を', 'ん', 'が', 'ぎ', 'ぐ', 'げ', 'ご', 'ざ', 'じ', 'ず', 'ぜ', 'ぞ', 'だ', 'ぢ', 'づ', 'で', 'ど', 'ば', 'び', 'ぶ', 'べ', 'ぼ', 'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'];
+var katakanas = ['ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ', 'サ', 'シ', 'ス', 'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト', 'ナ', 'ニ', 'ヌ', 'ネ', 'ノ', 'ハ', 'ヒ', 'フ', 'ヘ', 'ホ', 'マ', 'ミ', 'ム', 'メ', 'モ', 'ヤ', 'ユ', 'ヨ', 'ラ', 'リ', 'ル', 'レ', 'ロ', 'ワ', 'ヲ', 'ン', 'ガ', 'ギ', 'グ', 'ゲ', 'ゴ', 'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ', 'ダ', 'ヂ', 'ヅ', 'デ', 'ド', 'バ', 'ビ', 'ブ', 'ベ', 'ボ', 'パ', 'ピ', 'プ', 'ペ', 'ポ'];
+var romanizations = ['a', 'i', 'u', 'e', 'o', 'ka', 'ki', 'ku', 'ke', 'ko', 'sa', 'shi', 'su', 'se', 'so', 'ta', 'chi', 'tsu', 'te', 'to', 'na', 'ni', 'nu', 'ne', 'no', 'ha', 'hi', 'fu', 'he', 'ho', 'ma', 'mi', 'mu', 'me', 'mo', 'ya', 'yu', 'yo', 'ra', 'ri', 'ru', 're', 'ro', 'wa', 'wo', 'n', 'ga', 'gi', 'gu', 'ge', 'go', 'za', 'ji', 'zu', 'ze', 'zo', 'da', 'dji', 'dzu', 'de', 'do', 'ba', 'bi', 'bu', 'be', 'bo', 'pa', 'pi', 'pu', 'pe', 'po'];
+var nKanas = hiraganas.length;
+var nChoices = 4;
+</script>
+
+<body style="width:400">
+<table width="100%" height="100">
+  <tr>
+    <td align="left" valign="top">
+      <input type="radio" name="scope" onchange="changeScope()" value="hiragana" checked>仅限平假名<br>
+      <input type="radio" name="scope" onchange="changeScope()" value="katagana">仅限片假名<br>
+      <input type="radio" name="scope" onchange="changeScope()" value="mixed">平、片假名混合<br>
+    </td>
+    <td align="center" valign="top" style="color:blue">
+      已答题数：<span id="counter_total"></span><br>
+      正确题数：<span id="counter_correct"></span><br>
+      正确率：<span id="counter_correct_rate"></span><br>
+      <input type="button" id="clear" value="清零"><br>
+    </td>
+    <td align="right" valign="top">
+      <input type="radio" name="direction" onchange="changeDirection()" value="kana2rom" checked>看假名选读音<br>
+      <input type="radio" name="direction" onchange="changeDirection()" value="rom2kana">看读音选假名<br>
+      <input type="radio" name="direction" onchange="changeDirection()" value="mixed">双向练习<br>
+    </td>
+  </tr>
+</table>
+<div align="center" id="question" style="height:200px;line-height:200px;font-size:150px;font-family:MS PGothic;color:red">a</div>
+<table width="100%" height="100">
+  <tr id="choices">
+    <script>
+      for (var i = 0; i < nChoices; i++) {
+        document.write('<td align=center valign=middle><input type=button id=choice' + i + ' onClick="choose(' + i + ')" style="width:60px;font-size:25px"></td>');
+      }
+    </script>
+  </tr>
+</table>
+<div align="center" id="feedback" style="font-size:30px"></div>
+</body>
+
+<script>
+// Initialization
+var indices = [];
+for (var i = 0; i < nKanas; i++) {
+  indices.push(i);
+}
+
+var counterTotal = 0;
+var counterCorrect = 0;
+var currentScope;
+var currentDirection;
+var answer;
+updateCounter();
+newQuestion();
+
+// Set up callbacks
+document.getElementById('clear').onclick = function() {
+  counterTotal = 0;
+  counterCorrect = 0;
+  updateCounter();
+}
+
+// Make a new question
+function newQuestion() {
+  // Decide type of question
+  var scope = document.querySelector('input[name="scope"]:checked').value;
+  var direction = document.querySelector('input[name="direction"]:checked').value;
+
+  if (scope == 'mixed') scope = (Math.random() < 0.5) ? 'hiragana' : 'katakana';
+  if (direction == 'mixed') direction = (Math.random() < 0.5) ? 'kana2rom' : 'rom2kana';
+
+  currentScope = scope;
+  currentDirection = direction;
+
+  // Randomly pick nChoices kanas as the choices
+  for (var i = 0; i < nChoices; i++) {
+    var j = Math.floor(Math.random() * (nKanas - i) + i);
+    var t = indices[i]; indices[i] = indices[j]; indices[j] = t;
+  }
+
+  // Randomly pick a correct answer
+  answer = Math.floor(Math.random() * nChoices);
+
+  // Display the question
+  document.getElementById('question').innerText =
+    direction == 'rom2kana' ? romanizations[indices[answer]] :
+    scope == 'hiragana' ? hiraganas[indices[answer]] : katakanas[indices[answer]];
+
+  // Display the choices
+  for (var i = 0; i < nChoices; i++) {
+    document.getElementById('choice' + i).value =
+      direction == 'kana2rom' ? romanizations[indices[i]] :
+      scope == 'hiragana' ? hiraganas[indices[i]] : katakanas[indices[i]];
+  }
+}
+
+// Callback when user changes the scope or direction: may need to generate a new question
+function changeScope() {
+  var scope = document.querySelector('input[name="scope"]:checked').value;
+  if (scope != 'mixed' && scope != currentScope) {
+    newQuestion();
+  }
+}
+
+function changeDirection() {
+  var direction = document.querySelector('input[name="direction"]:checked').value;
+  if (direction != 'mixed' && direction != currentDirection) {
+    newQuestion();
+  }
+}
+
+// Callback when user chooses an answer
+function choose(id) {
+  if (id == answer) {
+    counterCorrect++;
+    fade(document.getElementById('feedback'), '<font color=00E000>正确！</font>')
+  }
+  else {
+    fade(document.getElementById('feedback'), '<font color=red>错误！正确答案为 ' + document.getElementById('choice' + answer).value + '</font>')
+  }
+  counterTotal++;
+  updateCounter();
+  newQuestion();
+}
+
+// Update the statistics counter
+function updateCounter() {
+  document.getElementById('counter_total').innerText = counterTotal;
+  document.getElementById('counter_correct').innerText = counterCorrect;
+  document.getElementById('counter_correct_rate').innerText = counterTotal == 0 ? '-' : Math.floor(100.0 * counterCorrect / counterTotal) + ' %';
+}
+
+// Display text in an element and fade out
+var timer;
+function fade(element, content) {
+    clearInterval(timer);
+    element.innerHTML = content;
+    var op = 1.5;  // initial opacity
+    timer = setInterval(function () {
+        if (op <= 0){
+            clearInterval(timer);
+            element.innerHTML = '';
+            return;
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= 0.1;
+    }, 100);
+}
+</script>
